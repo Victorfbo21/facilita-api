@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id        String     @id @default(uuid())
+  name      String?    @unique
+  email     String     @unique
+  clients   Clients[]
+  sequences Sequence[]
+}
+
+model Clients {
+  id             String         @id @default(uuid())
+  owner          String
+  email          String         @unique
+  name           String         @unique
+  contact        String
+  locationX      Int
+  locationY      Int
+  company        Company        @relation(fields: [owner], references: [id])
+  sequence_items SenqueceItem[]
+}
+
+model Sequence {
+  id        String         @id @default(uuid())
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  companyId String
+  order     SenqueceItem[]
+  company   Company        @relation(fields: [companyId], references: [id])
+}
+
+model SenqueceItem {
+  id          String   @id @default(uuid())
+  client_name String
+  sequence_id String
+  position    Int
+  client      Clients  @relation(fields: [client_name], references: [name])
+  sequence    Sequence @relation(fields: [sequence_id], references: [id])
+}
