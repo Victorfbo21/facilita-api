@@ -54,6 +54,21 @@ export default class ClientsRepository {
         }
     }
 
+    async getClientById(clientId: string) {
+        try {
+            const client = await this.prisma.clients.findFirst({
+                where: {
+                    id: clientId
+                }
+            })
+
+            return client
+        }
+        catch (error) {
+            return null
+        }
+    }
+
     async updateClintLocation(updateLocation: UpdateClientLocationDto) {
         try {
             const updated = await this.prisma.clients.update({

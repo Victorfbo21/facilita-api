@@ -27,5 +27,15 @@ export default class ClientsController {
     }
 
     async updateClientLocation(request: Request, response: Response) {
+
+        const { clientId, locationX, locationY } = request.body
+
+        const result = await this._clientsServices.updateClientLocation({
+            clientId,
+            locationX,
+            locationY
+        })
+
+        return response.status(result.statusCode).json(result)
     }
 }
