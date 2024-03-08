@@ -27,22 +27,33 @@ export default class SequenceServices {
             })
         }
 
-        const a = clientsToOrder?.map((item, index) => ({
+        const filter = clientsToOrder?.map((item, index) => ({
             client: item.name,
             locationX: item.locationX,
             locationY: item.locationY
         }));
 
-        console.log(a)
+        filter?.unshift({
+            client: 'Empresa', locationX: 0, locationY: 0
+        })
+
+        const applyOdernation = calculateRoute(filter ?? [])
+
+        const formatedOdernation = applyOdernation.map((index, i) => ({
+            user: filter?.[index].client,
+            position: i + 1
+        }))
+
+
+        console.log(formatedOdernation)
 
         return new AppResponse({
-            data: a,
+            data: formatedOdernation,
             error: false,
             statusCode: 200,
             message: 'Resutlado'
         })
 
-        // const apply = calculateRoute()
 
     }
 

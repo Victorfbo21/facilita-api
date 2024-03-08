@@ -25,7 +25,7 @@ function vizinhoMaisProximo(ponto: Point, pontos: Point[], visitados: Boolean[])
     return vizinhoMaisProximo;
 }
 
-// Função para calcular a rota mais curta usando o algoritmo do Caixeiro Viajante
+// Função para calcular a rota mais curta
 export function calculateRoute(pontos: Point[]) {
     const rota = [0]; // Começamos na empresa, que é o primeiro ponto
     const visitados = Array(pontos.length).fill(false);
@@ -48,19 +48,5 @@ export function calculateRoute(pontos: Point[]) {
     // Voltamos para a empresa no final
     rota.push(0);
 
-    console.log(rota)
-
     return rota;
 }
-
-// Exemplo de uso
-// const pontos = [
-//     { client: 'Empresa', locationX: 0, locationY: 0 }, // Empresa
-//     { client: 'Cliente B', locationX: 1, locationY: 2 },
-//     { client: 'Cliente C', locationX: 3, locationY: 1 },
-//     { client: 'Cliente D', locationX: 0, locationY: 2 },
-//     { client: 'Cliente E', locationX: 5, locationY: 2 }
-// ];
-
-// const rota = calculateRoute(pontos);
-// console.log("Rota mais curta:", rota.map((index) => `(${pontos[index].locationX}, ${pontos[index].locationY})`));

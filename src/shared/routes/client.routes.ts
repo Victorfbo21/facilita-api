@@ -16,3 +16,8 @@ ClientsRoutes.get('/', (request, response) => {
 ClientsRoutes.post('/create', (request, response) => {
     return clientsController.createClient(request, response)
 })
+
+
+ClientsRoutes.post('/update-location', (request, response) => {
+    return clientsController.createClient(request, response)
+})

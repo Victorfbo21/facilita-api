@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { CreateClientDto } from "./dtos/create.dto";
+import { UpdateClientLocationDto } from "./dtos/update-location.dto";
 
 export default class ClientsRepository {
 
@@ -47,6 +48,26 @@ export default class ClientsRepository {
             })
 
             return client
+        }
+        catch (error) {
+            return null
+        }
+    }
+
+    async updateClintLocation(updateLocation: UpdateClientLocationDto) {
+        try {
+            const updated = await this.prisma.clients.update({
+                where: {
+                    id: updateLocation.clientId
+                },
+                data: {
+                    locationX: updateLocation.locationX,
+                    locationY: updateLocation.locationY
+                }
+            })
+
+            return updated
+
         }
         catch (error) {
             return null

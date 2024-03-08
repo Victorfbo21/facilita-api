@@ -25,4 +25,7 @@ export default class ClientsController {
         return response.status(result.statusCode).json(result)
 
     }
+
+    async updateClientLocation(request: Request, response: Response) {
+    }
 }

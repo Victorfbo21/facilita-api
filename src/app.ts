@@ -2,7 +2,7 @@ import express from 'express'
 import { config } from 'dotenv'
 import cors from 'cors'
 import { Request, Response, Express } from 'express';
-import { Routes } from './shared/routes/index'
+import { Routes } from './shared/routes/routes'
 
 config({
     path: ".env"

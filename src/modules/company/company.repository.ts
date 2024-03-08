@@ -25,8 +25,10 @@ export default class CompanyRepository {
         try {
             const company = await this.prisma.company.findFirst({
                 where: {
-                    AND: [
-                        { name: name },
+                    AND: [{
+                        name: name,
+                        email: email
+                    },
                     ]
                 }
             })
